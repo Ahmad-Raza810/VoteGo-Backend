@@ -1,4 +1,4 @@
-package com.ahmad.projects.voting_application.exception;
+package com.ahmad.projects.votego.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {
