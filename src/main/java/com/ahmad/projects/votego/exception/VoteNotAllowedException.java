@@ -1,4 +1,4 @@
-package com.ahmad.projects.voting_application.exception;
+package com.ahmad.projects.votego.exception;
 
 public class VoteNotAllowedException extends RuntimeException {
     public VoteNotAllowedException(String message) {
