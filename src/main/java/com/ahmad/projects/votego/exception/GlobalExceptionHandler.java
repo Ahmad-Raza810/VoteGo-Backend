@@ -1,4 +1,4 @@
-package com.ahmad.projects.voting_application.exception;
+package com.ahmad.projects.votego.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
