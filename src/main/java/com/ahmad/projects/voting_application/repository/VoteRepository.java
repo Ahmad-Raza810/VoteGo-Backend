@@ -9,4 +9,5 @@ import java.nio.file.LinkOption;
 @Repository
 public interface VoteRepository extends JpaRepository<Vote,Long> {
 
+
 }
