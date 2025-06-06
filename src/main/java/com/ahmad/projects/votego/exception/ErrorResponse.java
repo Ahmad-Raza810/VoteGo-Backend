@@ -1,4 +1,4 @@
-package com.ahmad.projects.voting_application.exception;
+package com.ahmad.projects.votego.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
