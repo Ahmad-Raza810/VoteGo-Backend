@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ahmad.projects</groupId>
-	<artifactId>voting-application</artifactId>
+	<artifactId>VoteGo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>voting-application</name>
 	<description>A voting application.</description>
