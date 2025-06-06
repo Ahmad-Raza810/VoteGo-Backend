@@ -3,7 +3,7 @@
 HELP.md
 mvnw
 mvnw.cmd
-voting-application.iml
+VoteGo.iml
 
 .mvn
 target
