@@ -1,4 +1,4 @@
-package com.ahmad.projects.voting_application.entities;
+package com.ahmad.projects.votego.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
