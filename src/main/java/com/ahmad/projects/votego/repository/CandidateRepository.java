@@ -1,6 +1,6 @@
-package com.ahmad.projects.voting_application.repository;
+package com.ahmad.projects.votego.repository;
 
-import com.ahmad.projects.voting_application.entities.Candidate;
+import com.ahmad.projects.votego.entities.Candidate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
