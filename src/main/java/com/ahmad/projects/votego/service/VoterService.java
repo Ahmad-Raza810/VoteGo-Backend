@@ -1,6 +1,7 @@
-package com.ahmad.projects.voting_application.service;
+package com.ahmad.projects.votego.service;
 
-import com.ahmad.projects.voting_application.entities.Voter;
+import com.ahmad.projects.votego.dto.VoterDto;
+import com.ahmad.projects.votego.entities.Voter;
 
 import java.util.List;
 
@@ -11,7 +12,10 @@ public interface VoterService {
     Voter getVoterById(Long voterId);
 
     List<Voter> getAllVoters();
-    //String deleteVoter(Long voterId);
+
+    Voter updateVoter(Voter voter, Long voterId);
+
+    void deleteVoter(Long voterId);
 
     /*
      *
