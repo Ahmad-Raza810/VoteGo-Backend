@@ -1,23 +1,26 @@
-package com.ahmad.projects.voting_application.service;
+package com.ahmad.projects.votego.service;
 
-import com.ahmad.projects.voting_application.entities.Voter;
-import com.ahmad.projects.voting_application.exception.DuplicateResourceException;
-import com.ahmad.projects.voting_application.exception.ResourceNotFoundException;
-import com.ahmad.projects.voting_application.repository.CandidateRepository;
-import com.ahmad.projects.voting_application.repository.VoterRepository;
+import com.ahmad.projects.votego.dto.VoterDto;
+import com.ahmad.projects.votego.entities.Candidate;
+import com.ahmad.projects.votego.entities.Vote;
+import com.ahmad.projects.votego.entities.Voter;
+import com.ahmad.projects.votego.exception.DuplicateResourceException;
+import com.ahmad.projects.votego.exception.ResourceNotFoundException;
+import com.ahmad.projects.votego.repository.CandidateRepository;
+import com.ahmad.projects.votego.repository.VoterRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class VoterServiceImpl implements VoterService{
+public class VoterServiceImpl implements VoterService {
 
     @Autowired
-    private  VoterRepository voterRepository;
+    private VoterRepository voterRepository;
     @Autowired
-    private  CandidateRepository candidateRepository;
-
+    private CandidateRepository candidateRepository;
 
 
     public VoterServiceImpl(CandidateRepository candidateRepository, VoterRepository voterRepository) {
@@ -28,17 +31,17 @@ public class VoterServiceImpl implements VoterService{
     //Service method for register voter
     @Override
     public Voter addVoter(Voter voter) {
-        if(voterRepository.existByEmail(voter.getEmail())){
-            throw new DuplicateResourceException("Voter With email '"+voter.getEmail()+"' already exist.");
+        if (voterRepository.existsByEmail(voter.getEmail())) {
+            throw new DuplicateResourceException("Voter With email '" + voter.getEmail() + "' already exist.");
         }
         return voterRepository.save(voter);
     }
 
-    //service method for get an voter by id
+    //service method for get a voter by id
     @Override
     public Voter getVoterById(Long voterId) {
-         return voterRepository.findById(voterId)
-                 .orElseThrow(()->new ResourceNotFoundException("Voter With id '"+voterId+"' doesn't exist."));
+        return voterRepository.findById(voterId)
+                .orElseThrow(() -> new ResourceNotFoundException("Voter With id '" + voterId + "' doesn't exist."));
     }
 
 
@@ -48,26 +51,30 @@ public class VoterServiceImpl implements VoterService{
         return voterRepository.findAll();
     }
 
+    //Service method for updating voter.
+    @Override
+    public Voter updateVoter(Voter updatedVoter, Long voterId) {
+        Voter voter = voterRepository.findById(voterId).orElseThrow(() -> new ResourceNotFoundException("Voter With id '" + voterId + "' doesn't exist."));
+        if (updatedVoter.getEmail() != null)
+            voter.setEmail(updatedVoter.getEmail());
+        if (updatedVoter.getName() != null)
+            voter.setName(updatedVoter.getName());
+           return voterRepository.save(voter);
+
+    }
 
 
-
- //   @Override
-//    public List<Voter> getVoterByName(String voterName) {
-//        List<Voter> voters=voterRepository.findByName(voterName).orElseThrow(()->new ResourceNotFoundException("Voter With name '"+voterName+"' doesn't exist."));
-//        return voters;
-//    }
-
-
-
-//    @Override
-//    public String deleteVoter(Long voterId) {
-//        Voter voter=voterRepository.findById(voterId).orElseThrow(()-> new ResourceNotFoundException("Voter with id '"+voterId+"' not exist."));
-//        if(voter.isHasVoted())
-//        {
-//       voter.getVote().getCandidate().setVoteCount(-1);
-//        }
-//        voterRepository.deleteById(voterId);
-//        return "Voter delete successfully.";
-//    }
-
+    //Service method for deleting voter.
+    @Override
+    @Transactional
+    public void deleteVoter(Long voterId) {
+        Voter voter = voterRepository.findById(voterId).orElseThrow(() -> new ResourceNotFoundException("Voter With id '" + voterId + "' doesn't exist."));
+        Vote vote = voter.getVote();
+        if (vote != null) {
+            Candidate candidate = vote.getCandidate();
+            candidate.setVoteCount(candidate.getVoteCount() - 1);
+            candidateRepository.save(candidate);
+        }
+        voterRepository.deleteById(voterId);
+    }
 }
