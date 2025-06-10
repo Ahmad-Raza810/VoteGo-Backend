@@ -1,4 +1,4 @@
-package com.ahmad.projects.voting_application;
+package com.ahmad.projects.votego;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
