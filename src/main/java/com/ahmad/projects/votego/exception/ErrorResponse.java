@@ -1,14 +1,16 @@
 package com.ahmad.projects.votego.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Setter
+@Getter
 public class ErrorResponse {
 
+    public ErrorResponse( String message ,int statusCode) {
+        this.statusCode = statusCode;
+        this.message = message;
+    }
+
     private String message;
-    private Integer statusCode;
+    private int statusCode;
 }
