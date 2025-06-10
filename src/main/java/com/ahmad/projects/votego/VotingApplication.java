@@ -1,4 +1,4 @@
-package com.ahmad.projects.voting_application;
+package com.ahmad.projects.votego;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
