@@ -13,10 +13,10 @@ public class Vote {
     private Long voteId;
 
     @OneToOne
-    @JoinColumn(name = "voter_id",unique = true)
+    @JoinColumn(name = "voter_id", unique = true)
     private Voter voter;
 
     @ManyToOne
-    @JoinColumn(name ="candidate_id")
-    private  Candidate candidate;
+    @JoinColumn(name = "candidate_id")
+    private Candidate candidate;
 }
