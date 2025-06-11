@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/v1/voter")
 public class VoterController {
 
@@ -48,9 +49,9 @@ public class VoterController {
 
     //Rest endpoint for deleting a voter
     @DeleteMapping("/delete/{id}")
-    public void deleteVoter(@PathVariable("id") Long voterId) {
+    public ResponseEntity<String> deleteVoter(@PathVariable("id") Long voterId) {
         voterService.deleteVoter(voterId);
-        //return new ResponseEntity<>(returnedVoter, HttpStatus.OK);
+        return new ResponseEntity<>("Voter with id '"+voterId+"'deleted successfully. ", HttpStatus.OK);
     }
 
     //Rest endpoint for getting all voters.
