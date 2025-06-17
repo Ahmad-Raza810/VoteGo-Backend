@@ -2,11 +2,11 @@ package com.ahmad.projects.votego.service;
 
 import com.ahmad.projects.votego.entities.Vote;
 
+import java.util.List;
+
 public interface VoteService {
 
-    Vote addVote(Vote vote);
+    List<Vote> getAllVote();
 
-    void deleteVote(Long voteId);
-
-
+    Vote voteCast(Long voterId,Long candidateId);
 }
