@@ -1,9 +1,14 @@
 package com.ahmad.projects.votego.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class VoteRequestDto {
- private Long voterId;
- private Long candidateId;
+
+   @NotNull(message = "Voter id is required.")
+   private Long voterId;
+
+   @NotNull(message = "Candidate id is required.")
+   private Long candidateId;
 }
