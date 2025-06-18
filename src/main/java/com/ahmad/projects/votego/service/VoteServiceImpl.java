@@ -31,7 +31,7 @@ public class VoteServiceImpl implements VoteService{
 
     @Override
     public List<Vote> getAllVote() {
-        return List.of();
+        return voteRepository.findAll();
     }
 
     @Override
@@ -46,14 +46,14 @@ public class VoteServiceImpl implements VoteService{
         Vote vote=new Vote();
         vote.setVoter(voter);
         vote.setCandidate(candidate);
-        voteRepository.save(vote);
 
         candidate.setVoteCount(candidate.getVoteCount()+1);
         candidateRepository.save(candidate);
 
+        voter.setVote(vote);
         voter.setHasVoted(true);
         voterRepository.save(voter);
-        return null;
+        return vote;
     }
 
 }
